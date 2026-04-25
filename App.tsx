@@ -16,7 +16,6 @@ export default function App() {
   const [precoProduto, setPrecoProduto] = useState('');
   const [produtoEditando, setProdutoEditando] = useState<number | null>(null);
 
-  // 🔹 Criar banco ao iniciar
   useEffect(() => {
     iniciar();
   }, []);
@@ -51,7 +50,6 @@ export default function App() {
     await db.closeAsync();
   };
 
-  // 📌 LISTAR
   const listarProdutos = async () => {
     const db = await abrirBanco();
     const resultado = await db.getAllAsync<Produto>('SELECT * FROM produtos');
@@ -59,7 +57,6 @@ export default function App() {
     await db.closeAsync();
   };
 
-  // 📌 ADICIONAR
   const addProduto = async () => {
     if (!nomeProduto || !precoProduto) return;
 
@@ -78,7 +75,6 @@ export default function App() {
     listarProdutos();
   };
 
-  // 📌 DELETAR
   const deleteProduto = async (id: number) => {
     const db = await abrirBanco();
 
@@ -88,7 +84,6 @@ export default function App() {
     listarProdutos();
   };
 
-  // 📌 ATUALIZAR
   const updateProduto = async (id: number) => {
     const db = await abrirBanco();
 
@@ -181,7 +176,7 @@ export default function App() {
       ) : (
         <Text style={{ textAlign: 'center' }}>
           Sem produtos cadastrados
-        </Text>
+        </Text>{/*meu expo não tava querendo abrir, nada de novo sobre o sol */}
       )}
     </View>
   );
